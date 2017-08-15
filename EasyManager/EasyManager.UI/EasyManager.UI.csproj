@@ -406,6 +406,16 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\my_tfs\EMan\Easy Manager\EasyManagerClasses\EasyManagerClasses.csproj">
+      <Project>{11722704-f1b1-4180-8155-2fcdc926a079}</Project>
+      <Name>EasyManagerClasses</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasyManagerBLL\EasyManagerBLL.csproj">
+      <Project>{377a2566-518a-4b65-b0b0-eab08b9b6b25}</Project>
+      <Name>EasyManagerBLL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

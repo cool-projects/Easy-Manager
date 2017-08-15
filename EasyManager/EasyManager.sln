@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyManager", "EasyManager\EasyManager.csproj", "{23B6EE73-9325-43FD-AA20-250BFEAF5A05}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyManager.UI", "EasyManager.UI\EasyManager.UI.csproj", "{79883CD9-6524-468E-A6F6-1EB4AB2F90E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyManagerBLL", "EasyManagerBLL\EasyManagerBLL.csproj", "{377A2566-518A-4B65-B0B0-EAB08B9B6B25}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{23B6EE73-9325-43FD-AA20-250BFEAF5A05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23B6EE73-9325-43FD-AA20-250BFEAF5A05}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23B6EE73-9325-43FD-AA20-250BFEAF5A05}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23B6EE73-9325-43FD-AA20-250BFEAF5A05}.Release|Any CPU.Build.0 = Release|Any CPU
 		{79883CD9-6524-468E-A6F6-1EB4AB2F90E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{79883CD9-6524-468E-A6F6-1EB4AB2F90E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79883CD9-6524-468E-A6F6-1EB4AB2F90E2}.Release|Any CPU.ActiveCfg = Release|Any CPU

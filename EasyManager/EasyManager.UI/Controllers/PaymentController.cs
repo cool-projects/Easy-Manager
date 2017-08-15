@@ -18,7 +18,7 @@ namespace EasyManager.UI.Controllers
         public ActionResult PaymentList()
         {
             var model = new List<Payment>();
-            model = bll.GetAllPayments();
+            //model = bll.GetAllPayments();
             ViewBag.Payment = "class = active";
             ViewBag.PList = "class = active";
             return View(model);
@@ -27,7 +27,7 @@ namespace EasyManager.UI.Controllers
         public ActionResult MemberPayments(string memberIdNumber)
         {
             var model = new List<Payment>();
-            model = bll.GetMemberPayments(memberIdNumber);
+            //model = bll.GetMemberPayments(memberIdNumber);
             ViewBag.Payment = "class = active";
             ViewBag.PList = "class = active";
             return View(model);
