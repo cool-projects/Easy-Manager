@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{377A2566-518A-4B65-B0B0-EAB08B9B6B25}</ProjectGuid>
+    <ProjectGuid>{11722704-F1B1-4180-8155-2FCDC926A079}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EasyManagerBLL</RootNamespace>
-    <AssemblyName>EasyManagerBLL</AssemblyName>
+    <RootNamespace>EasyManagerClasses</RootNamespace>
+    <AssemblyName>EasyManagerClasses</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -38,22 +38,9 @@
     <Reference Include="GridMvc">
       <HintPath>..\EasyManager\packages\Grid.Mvc.3.0.0\lib\net40\GridMvc.dll</HintPath>
     </Reference>
-    <Reference Include="ImageResizer, Version=3.1.2.88, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\EasyManager\packages\ImageResizer.3.1.2\lib\ImageResizer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\EasyManager\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\EasyManager\packages\Microsoft.AspNet.Razor.2.0.20505.0\lib\net40\System.Web.Razor.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,11 +48,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EasyManagerBL.cs" />
+    <Compile Include="Benefit.cs" />
+    <Compile Include="Claim.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="Member.cs" />
+    <Compile Include="MemberExistsExceptions.cs" />
+    <Compile Include="MembershipType.cs" />
+    <Compile Include="MemberStatus.cs" />
+    <Compile Include="Payment.cs" />
+    <Compile Include="PolicyHolderView.cs" />
+    <Compile Include="PolicyMember.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Policy.cs" />
+    <Compile Include="Statistics.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Grid.mvc.readme" />
     <None Include="packages.config" />
     <None Include="Views\Shared\_Grid.cshtml" />
@@ -76,16 +73,6 @@
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
     <Content Include="Scripts\gridmvc.min.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EasyManagerClasses\EasyManagerClasses.csproj">
-      <Project>{11722704-f1b1-4180-8155-2fcdc926a079}</Project>
-      <Name>EasyManagerClasses</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EasyManagerDLL\EasyManagerDLL.csproj">
-      <Project>{622034b3-34bd-405d-a437-ee341ba38e91}</Project>
-      <Name>EasyManagerDLL</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

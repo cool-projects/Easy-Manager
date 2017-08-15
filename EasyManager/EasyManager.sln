@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyManager.UI", "EasyManag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyManagerBLL", "EasyManagerBLL\EasyManagerBLL.csproj", "{377A2566-518A-4B65-B0B0-EAB08B9B6B25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyManagerClasses", "..\..\..\my_tfs\EMan\Easy Manager\EasyManagerClasses\EasyManagerClasses.csproj", "{11722704-F1B1-4180-8155-2FCDC926A079}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyManagerClasses", "EasyManagerClasses\EasyManagerClasses.csproj", "{11722704-F1B1-4180-8155-2FCDC926A079}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyManagerDLL", "..\..\..\my_tfs\EMan\Easy Manager\EasyManagerDLL\EasyManagerDLL.csproj", "{622034B3-34BD-405D-A437-EE341BA38E91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyManagerDLL", "EasyManagerDLL\EasyManagerDLL.csproj", "{622034B3-34BD-405D-A437-EE341BA38E91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{377A2566-518A-4B65-B0B0-EAB08B9B6B25}</ProjectGuid>
+    <ProjectGuid>{622034B3-34BD-405D-A437-EE341BA38E91}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EasyManagerBLL</RootNamespace>
-    <AssemblyName>EasyManagerBLL</AssemblyName>
+    <RootNamespace>EasyManagerDLL</RootNamespace>
+    <AssemblyName>EasyManagerDLL</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -38,22 +38,21 @@
     <Reference Include="GridMvc">
       <HintPath>..\EasyManager\packages\Grid.Mvc.3.0.0\lib\net40\GridMvc.dll</HintPath>
     </Reference>
-    <Reference Include="ImageResizer, Version=3.1.2.88, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\EasyManager\packages\ImageResizer.3.1.2\lib\ImageResizer.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MySql.Data, Version=6.4.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\EasyManager\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MySql.Data.Entity, Version=6.4.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MySql.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Web, Version=6.4.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MySql.Web.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\EasyManager\packages\Microsoft.AspNet.Razor.2.0.20505.0\lib\net40\System.Web.Razor.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,11 +60,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EasyManagerBL.cs" />
+    <Compile Include="GlobalDataAccess.cs" />
+    <Compile Include="MembersOperations.cs" />
+    <Compile Include="PaymentOperations.cs" />
+    <Compile Include="PolicyOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <ProjectReference Include="..\EasyManagerClasses\EasyManagerClasses.csproj">
+      <Project>{11722704-F1B1-4180-8155-2FCDC926A079}</Project>
+      <Name>EasyManagerClasses</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Grid.mvc.readme" />
     <None Include="packages.config" />
     <None Include="Views\Shared\_Grid.cshtml" />
@@ -76,16 +86,6 @@
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
     <Content Include="Scripts\gridmvc.min.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EasyManagerClasses\EasyManagerClasses.csproj">
-      <Project>{11722704-f1b1-4180-8155-2fcdc926a079}</Project>
-      <Name>EasyManagerClasses</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EasyManagerDLL\EasyManagerDLL.csproj">
-      <Project>{622034b3-34bd-405d-a437-ee341ba38e91}</Project>
-      <Name>EasyManagerDLL</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
