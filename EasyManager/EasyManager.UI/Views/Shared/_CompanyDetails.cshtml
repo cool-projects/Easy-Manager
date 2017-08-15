@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNet.Identity
+
+@if (Request.IsAuthenticated)
+{
+    EasyManagerBLL.EasyManagerBL bll = new EasyManagerBLL.EasyManagerBL();
+    string UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+    var company = bll.GetCompanies(UserId);
+
+    <nav class="navbar navbar-default">
+        <h4>&nbsp;  Palour Name: <b style="color:#149599">@company[0].CompanyName </b>&nbsp;  Branch Name: <b style="color:#149599">
+    @{int i = 0; foreach (var item in company)
+            {
+                if (i == 0)
+                {
+                    @(item.BranchName);
+                }
+                else
+                {
+                    @(", " + item.BranchName);
+                }
+                i++;
+            };
+        }
+    </b></h4>
+    </nav>
+}
+
+

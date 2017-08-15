@@ -1,0 +1,66 @@
+﻿
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+    @Html.AntiForgeryToken()
+
+    @*<ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>*@
+        <ul class="nav">
+            <li><a href="http://pacasa.org.za" class=""><i class="lnr lnr-home"></i> <span>PACASA Home</span></a></li>
+            <li><a href="@Url.Action("Index", "Home")" class="@ViewBag.Home"><i class="fa fa-tachometer"></i> <span>Dashboard</span></a></li>
+            <li>
+                <a href="#subPages" data-toggle="collapse" class="collapsed @ViewBag.Demographics"><i class="lnr lnr-chart-bars"></i> <span>Demographics</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                <div id="subPages" class="collapse">
+                    <ul class="nav">
+                        <li><a href="@Url.Action("MemberList", "Demographics")" class="@ViewBag.DemoList">Member List</a></li>
+                        <li><a href="@Url.Action("Charts", "Demographics")" class="@ViewBag.Charts">Charts</a></li>
+                        <li><a href="@Url.Action("Map", "Demographics")" class="@ViewBag.Map">Map Distribution</a></li>
+                    </ul>
+                </div>
+            </li>
+            @if (this.User.IsInRole("Admin"))
+            {
+                <li>
+                    <a href="#subPages1" data-toggle="collapse" class="collapsed @ViewBag.Member"><i class="lnr lnr-file-add"></i> <span>Data Management</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                    <div id="subPages1" class="collapse ">
+                        <ul class="nav">
+                            <li><a href="@Url.Action("MemberList", "Member")" class="@ViewBag.List">Edit Member</a></li>
+                            <li><a href="@Url.Action("CreateMember", "Member")" class="@ViewBag.Create">Add New Member</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#" class=""><i class="fa fa-line-chart"></i> <span>Reports</span></a></li>
+                <li><a href="@Url.Action("Register", "Account")" class="@ViewBag.Account"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
+            }
+            <li><a href="javascript:document.getElementById('logoutForm').submit()" class=""><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+        </ul>
+
+    }
+}
+else
+{
+    
+    @*<ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>*@
+    @*<ul class="nav">
+        <li><a href="http://pacasa.org.za" class="active"><i class="lnr lnr-home"></i> <span>PACASA Home</span></a></li>
+    </ul>*@
+    <br/>
+    <br/>
+    <div class="col-xs-12" style="color:#1FA67B">Sign in to continue to app</div>
+    <br />
+    <div class="content">
+        
+        <section id="loginForm">
+            @Html.Partial("_LoginFormPartial")
+        </section>
+    </div>
+}

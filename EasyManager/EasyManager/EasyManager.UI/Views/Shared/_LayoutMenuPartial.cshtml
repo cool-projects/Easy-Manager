@@ -1,0 +1,46 @@
+﻿
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+    @Html.AntiForgeryToken()
+        <ul class="nav">
+            <li><a href="@Url.Action("Index", "Home")" class="@ViewBag.Home"><i class="lnr lnr-laptop"></i> <span>Dashboard</span></a></li>
+            <li>
+                <a href="#subPages" data-toggle="collapse" class="collapsed @ViewBag.Member"><i class="lnr lnr-users"></i> <span>Members</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                <div id="subPages" class="collapse">
+                    <ul class="nav">
+                        <li><a href="@Url.Action("MemberList", "Member")" class="@ViewBag.MList">Member List</a></li>
+                        <li><a href="@Url.Action("MemberCreate", "Member")" class="@ViewBag.MCreate">Add New Member</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="#subPages0" data-toggle="collapse" class="collapsed @ViewBag.Policy"><i class="lnr lnr-envelope"></i> <span>Policies</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                <div id="subPages0" class="collapse">
+                    <ul class="nav"> 
+                        <li><a href="@Url.Action("MemberPolicyList", "MemberPolicy")" class="@ViewBag.PoList">Member Policies</a></li>
+                        <li><a href="@Url.Action("MemberPolicyCreate", "MemberPolicy")" class="@ViewBag.PoCreate">Allocate Policies</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="#subPages1" data-toggle="collapse" class="collapsed @ViewBag.Paymemnt"><i class="lnr lnr-layers"></i> <span>Payments</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                <div id="subPages1" class="collapse ">
+                    <ul class="nav">
+                        <li><a href="@Url.Action("PaymentList", "Payment")" class="@ViewBag.PList">All Payments</a></li>
+                        <li><a href="@Url.Action("PaymentCreate", "Payment")" class="@ViewBag.PCreate">New Payment</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="#" class=""><i class="lnr lnr-briefcase"></i> <span>Claims</span></a></li>
+            @if (this.User.IsInRole("SuperAdmin") || this.User.IsInRole("Admin"))
+            {
+                <li><a href="#" class=""><i class="fa fa-line-chart"></i> <span>Reports</span></a></li>
+                <li><a href="@Url.Action("Register", "Account")" class="@ViewBag.Account"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
+            }
+            <li><a href="javascript:document.getElementById('logoutForm').submit()" class=""><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+        </ul>
+
+    }
+}

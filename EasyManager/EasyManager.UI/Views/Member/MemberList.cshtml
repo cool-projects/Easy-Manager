@@ -1,0 +1,102 @@
+﻿@using EasyManagerClasses
+@model List<Members>
+@{
+    ViewBag.Title = "Members";
+}
+<style>
+    #tblMembers tbody tr:hover {
+        background-color: #d0e9ea;
+    }
+</style>
+<!-- OVERVIEW -->
+<div class="panel panel-headline">
+    <div class="panel-heading">
+        <div class="col-md-6">
+            <h3 class="panel-title">Registered Members</h3>
+        </div>
+        <div class="col-md-6">
+            <div class="text-right"><a href="@Url.Action("MemberCreate", "Member")" class="btn btn-primary">Add New Member</a><br/></div>
+        </div>
+        <br />
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div id="divMemberListInfo"></div>
+            <br/>
+        </div>
+        <div class="row">
+            <table id="tblMembers" class="table">
+                <thead>
+                    <tr>
+                        <th>Membership No.</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Member Type</th>
+                        <th>Member Status</th>
+                        <th>Date of Birth</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var color = string.Empty;
+                        if (item.MembershipStatus == "Active")
+                        {
+                            color = "LightCyan";
+                        }
+                        else if (item.MembershipStatus == "Suspended")
+                        {
+                            color = "LightPink";
+                        }
+                        else
+                        {
+                            color = "OldLace";
+                        }
+                        <tr style="background-color:@color">
+                            <td>@item.MembershipNumber<a href="@item.MemberId"></a></td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.MembershipType</td>
+                            <td>@item.MembershipStatus</td>
+                            <td>@item.DateOfBirth.ToString("dd-MM-yyyy")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+     </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        GetMemberInfoRowClick(@Model.Where(x=>x.MembershipType == "Main member" && x.MembershipStatus == "Active").Select(x=>x.MemberId).First());
+        $('#tblMembers').DataTable();
+        
+    });
+</script>
+
+<script type="text/javascript">
+    $('#tblMembers tr').click(function () {
+        var href = $(this).find("a").attr("href");
+        if (href) {
+            GetMemberInfoRowClick(href);
+        }
+    });
+   function GetMemberInfoRowClick(id)
+    {
+       $.ajax({
+           cache: false,
+           type: "GET",
+           data: { ID: id, Type: 1 },
+           url: '@Url.Action("MemberInfo", "Member")',
+           success: function (data) {
+               var $placeholder = $("#divMemberListInfo");
+               $placeholder.empty();
+               $placeholder.html(data);
+           },
+           error: function (xhr, ajaxOptions, thrownError) {
+               alert(xhr.status);
+           }
+       });
+    }
+</script>

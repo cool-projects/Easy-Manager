@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyManager", "EasyManager\EasyManager.csproj", "{23B6EE73-9325-43FD-AA20-250BFEAF5A05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyManagerDLL", "..\EasyManagerDLL\EasyManagerDLL.csproj", "{622034B3-34BD-405D-A437-EE341BA38E91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyManagerClasses", "..\EasyManagerClasses\EasyManagerClasses.csproj", "{11722704-F1B1-4180-8155-2FCDC926A079}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyManagerBLL", "..\EasyManagerBLL\EasyManagerBLL.csproj", "{377A2566-518A-4B65-B0B0-EAB08B9B6B25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyManager.UI", "EasyManager.UI\EasyManager.UI.csproj", "{79883CD9-6524-468E-A6F6-1EB4AB2F90E2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23B6EE73-9325-43FD-AA20-250BFEAF5A05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23B6EE73-9325-43FD-AA20-250BFEAF5A05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23B6EE73-9325-43FD-AA20-250BFEAF5A05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23B6EE73-9325-43FD-AA20-250BFEAF5A05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{622034B3-34BD-405D-A437-EE341BA38E91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{622034B3-34BD-405D-A437-EE341BA38E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{622034B3-34BD-405D-A437-EE341BA38E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{622034B3-34BD-405D-A437-EE341BA38E91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11722704-F1B1-4180-8155-2FCDC926A079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11722704-F1B1-4180-8155-2FCDC926A079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11722704-F1B1-4180-8155-2FCDC926A079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11722704-F1B1-4180-8155-2FCDC926A079}.Release|Any CPU.Build.0 = Release|Any CPU
+		{377A2566-518A-4B65-B0B0-EAB08B9B6B25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{377A2566-518A-4B65-B0B0-EAB08B9B6B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{377A2566-518A-4B65-B0B0-EAB08B9B6B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{377A2566-518A-4B65-B0B0-EAB08B9B6B25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79883CD9-6524-468E-A6F6-1EB4AB2F90E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79883CD9-6524-468E-A6F6-1EB4AB2F90E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79883CD9-6524-468E-A6F6-1EB4AB2F90E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79883CD9-6524-468E-A6F6-1EB4AB2F90E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://cool-projects.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = EasyManager\\EasyManager.csproj
+		SccProjectName1 = EasyManager
+		SccLocalPath1 = EasyManager
+		SccProjectUniqueName2 = ..\\EasyManagerBLL\\EasyManagerBLL.csproj
+		SccProjectName2 = ../EasyManagerBLL
+		SccLocalPath2 = ..\\EasyManagerBLL
+		SccProjectUniqueName3 = ..\\EasyManagerClasses\\EasyManagerClasses.csproj
+		SccProjectName3 = ../EasyManagerClasses
+		SccLocalPath3 = ..\\EasyManagerClasses
+		SccProjectUniqueName4 = ..\\EasyManagerDLL\\EasyManagerDLL.csproj
+		SccProjectName4 = ../EasyManagerDLL
+		SccLocalPath4 = ..\\EasyManagerDLL
+		SccProjectUniqueName5 = EasyManager.UI\\EasyManager.UI.csproj
+		SccProjectName5 = EasyManager.UI
+		SccLocalPath5 = EasyManager.UI
+	EndGlobalSection
+EndGlobal

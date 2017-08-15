@@ -1,0 +1,135 @@
+﻿@using EasyManagerClasses
+@model MemberPolicy
+
+@{
+    var base64 = Convert.ToBase64String(Model.ImageFile);
+    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+}
+<div class="col-md-2 profile-main text-center">
+    <img src="@imgSrc" class="img-circle" alt="Avatar"/>
+    <br />
+    <br />
+    <br />
+    <a href="@Url.Action("MemberPolicyEdit", "MemberPolicy", new { memNo = Model.MainMemberID })" class="btn btn-primary">Edit Member Policy</a><br />
+    @Html.TextBoxFor(m => m.MainMemberID, new { type = "hidden" })
+</div>
+<div class="col-md-10">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label col-sm-5" style="text-align: left">Policy Holder:</label>
+            <div class="col-sm-7">
+                <label class="control-label" style="color:#149599; font-style:italic">@Model.MainMemberFullName</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5" style="text-align: left">Membership Number:</label>
+            <div class="col-sm-7">
+                <label class="control-label" style="color:#149599; font-style:italic">@Model.MainMemberID</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5" style="text-align: left">Membership Status:</label>
+            <div class="col-sm-7">
+                <label class="control-label" style="color:#149599; font-style:italic">@Model.MembershipStatus</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5" style="text-align: left">Date Joined:</label>
+            <div class="col-sm-7">
+                <label class="control-label" style="color:#149599; font-style:italic">@Model.DateJoined.ToString("dd-MM-yyyy")</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5" style="text-align: left">Date Activated:</label>
+            <div class="col-sm-7">
+                <label class="control-label" style="color:#149599; font-style:italic">@Model.DateActivated.ToString("dd-MM-yyyy")</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label col-sm-4" style="text-align: left">Policy No:</label>
+            <div class="col-sm-8">
+                <label class="control-label" style="color:#149599; font-style:italic">@Model.PolicyNumber</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5" style="text-align: left">Policy Name:</label>
+            <div class="col-sm-7">
+                <label class="control-label" style="color:#149599; font-style:italic">@Model.PolicyName</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5" style="text-align: left">Waiting Period:</label>
+            <div class="col-sm-7">
+                <label class="control-label" style="color:#149599; font-style:italic">@Model.WaitingPeriod months</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5" style="text-align: left">Admin Fees:</label>
+            <div class="col-sm-7">
+                <label class="control-label" style="color:#149599; font-style:italic">R @Model.AdminFee</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-5" style="text-align: left">Monthly Fees:</label>
+            <div class="col-sm-7">
+                <label class="control-label" style="color:#149599; font-style:italic">R @Model.MonthlyFee</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label col-sm-3" style="text-align: left">Benefits:</label>
+            <div class="col-sm-9">
+                <label class="control-label" style="color:#149599; font-style:italic">@{ int i = 0; foreach (var item in Model.Benefits)
+                    {
+                        if (i == 0)
+                        {
+                            @(item.BenefitName);
+                        }
+                        else
+                        {
+                            @(", " + item.BenefitName);
+                        }
+                        i++;
+                    }
+                }</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <h4>Beneficiaries List</h4>
+            <table id="tblBeneficiaries" class="table">
+                <thead>
+                    <tr>
+                        <th>Membership No.</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Beneficiaries)
+                    {
+                        var color = string.Empty;
+                        if (item.MembershipStatus == "Active")
+                        {
+                            color = "LightCyan";
+                        }
+                        else if (item.MembershipStatus == "Suspended")
+                        {
+                            color = "LightPink";
+                        }
+                        else
+                        {
+                            color = "OldLace";
+                        }
+                        <tr style="background-color:@color">
+                            <td style="font-size: smaller">@item.MembershipNumber</td>
+                            <td style="font-size: smaller">@item.MemberFullName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

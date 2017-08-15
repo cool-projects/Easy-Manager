@@ -1,0 +1,80 @@
+﻿@using EasyManagerClasses
+@model List<Policy>
+
+<table id="tblPolicies" class="table table-hover" style="width: 100%; font-size:smaller">
+    <thead>
+        <tr>
+            <th>Policy ID</th>
+            <th>Policy Name</th>
+            <th>Waiting Period</th>
+            <th>Maximum Beneficiaries</th>
+            <th>Policy Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var color = string.Empty;
+            if (item.PolicyID == 1)
+            {
+                color = "LightCyan";
+            }
+            else if (item.PolicyID == 2)
+            {
+                color = "LightPink";
+            }
+            else
+            {
+                color = "OldLace";
+            }
+            <tr class="color">
+                <td>@item.PolicyID<a href="@item.PolicyID"></a></td>
+                <td>@item.PolicyName</td>
+                <td>@item.WaitingPeriod</td>
+                <td>@item.MaximumBeneficiaries</td>
+                <td style="max-width: 50px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap">@item.PolicyDescription</td>
+            </tr>
+        }
+    </tbody>
+</table>
+  
+<script>
+    $(document).ready(function () {
+        $('#tblPolicies').DataTable({
+            "scrollY": 210,
+            "scrollX": true
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $('#tblPolicies tr').click(function () {
+        var pID = $(this).find("a").attr("href");
+            if (pID) {
+                GetPolicyInfoRowClick(pID);
+            }
+        });
+    function GetPolicyInfoRowClick(policyId) {
+            $.ajax({
+                cache: false,
+                type: "GET",
+                data: { polID: policyId },
+                url: '@Url.Action("PolicyInfo", "MemberPolicy")',
+                success: function (data) {
+                    $("#lblPolicyName").empty();
+                    $("#lblPolicyName").append(data.PolicyName);
+                    $("#lblPolicyId").empty();
+                    $("#lblPolicyId").append(data.PolicyID);
+                    $("#lblPolicyDesc").empty();
+                    $("#lblPolicyDesc").append(data.PolicyDescription);
+                    $("#lblWaitingPeriod").empty();
+                    $("#lblWaitingPeriod").append(data.WaitingPeriod + " month(s)");
+                    $("#lblMaxBeneficiaries").empty();
+                    $("#lblMaxBeneficiaries").append(data.MaximumBeneficiaries + " members");
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                }
+            });
+        }
+</script>

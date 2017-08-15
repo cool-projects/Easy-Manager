@@ -1,0 +1,315 @@
+﻿@using EasyManagerClasses
+@model MemberPolicyEdit
+@{
+    ViewBag.Title = "Edit Allocated Policy";
+}
+
+<!-- OVERVIEW -->
+<div class="panel panel-headline">
+    <div class="row panel-heading">
+        <div class="col-md-4">
+            <h3 class="panel-title">Edit Allocated Policy</h3>
+            <p class="panel-subtitle">Update policy allocated to member </p>
+        </div>
+        <div class="col-md-4">
+            <div><a href="#" class="btn btn-primary" id="btnSpinner" style="display:none"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Updating...</a><br /></div>
+        </div>
+        <div class="col-md-4">
+            <div class="text-right"><a href="@Url.Action("MemberPolicyList", "MemberPolicy")" class="btn btn-primary">Back to Member Policy List</a><br /></div>
+        </div>
+        <br />
+    </div>
+    <div class="row panel-body">
+
+        <div class="panel panel-info">
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4 style="color: #149599">Member allocated to policy :  <label style="color: #149599" id="lblNameTitle">@Model.MainMemberFullName</label></h4>
+                            <div class="form-group">
+                                <label class="control-label col-sm-5" for="country">Policy Holder:</label>
+                                <div class="col-sm-7">
+                                    @Html.DropDownListFor(m => m.MembershipNumber,  new SelectList(Model.MainMembers, "MainMemberID", "MemberFullNameAndID"), "-- Select Option--", new { @class = "form-control", @style = "color:#149599" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="col-sm-6">
+                                <h4 style="color: #149599">Choose policy benefits</h4>
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">Benefits</button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal" role="dialog">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title" style="color: #149599">Choose policy benefits</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                @foreach (var item in ViewBag.BenefitsList)
+                                                {
+                                                    <label class="checkbox-inline" for="@item.BenefitID"><input name="benefits" type="checkbox" id="@item.BenefitID" value="@item.BenefitName" alt="@item.BenefitCost">@item.BenefitName - (R @item.BenefitCost)</label>
+                                                }
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="btnAddBenefitsClick()">ADD Benefits</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <h4 style="color: #149599">Admin Fee</h4>
+                                <form>
+                                    <div class="form-group row">
+                                        <div class="col-xs-7">
+                                            <input class="form-control" id="adminFee" type="text" onkeyup="if (/\D/g.test(this.value)) { this.value = this.value.replace(/\D/g, '') }" style="color: #149599">
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <button type="button" class="btn btn-warning" onclick="GenerateMonthlyFee()">Add Fee</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4 style="color: #149599">Select a policy</h4>
+                            <div id="dvPoliciesList"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4 style="color: #149599">Policy allocation summary</h4>
+                            <div class="panel panel-info">
+                                <div class="panel-body">
+                                    <p>Policy holder:  <label style="color: #149599" id="lblPolicyHolder">@Model.MainMemberFullName</label></p>
+                                    <p>Membership number: <label style="color: #149599" id="lblMembershipNo">@Model.MembershipNumber</label></p>
+                                    <p>Beneficiaries: <label style="color: #149599" id="lblBeneficiaries">@Model.NoOfBeneficiaries member(s)</label></p>
+                                    <p>Max. Allowed Beneficiaries: <label style="color: #149599" id="lblMaxBeneficiaries">@Model.MaximumBeneficiaries members</label></p>
+                                    <p>Policy name: <label style="color: #149599" id="lblPolicyName">@Model.PolicyName</label></p>
+                                    <p>Policy description: <label style="color: #149599" id="lblPolicyDesc">@Model.PolicyDescription</label></p>
+                                    <p>Waiting period: <label style="color: #149599" id="lblWaitingPeriod">@Model.WaitingPeriod month(s)</label></p>
+                                    <p>Benefits: <label style="color: #149599" id="lblBenefits">@{int i = 0; foreach (var item in Model.Benefits)
+                                        {
+                                            if (i == 0)
+                                            {
+                                                @(item.BenefitName);
+                                            }
+                                            else
+                                            {
+                                                @(", " + item.BenefitName);
+                                            }
+                                            i++;
+                                        }
+                                    }</label>
+                                                                            </p>                                              
+                                    <p>Admin fee: <label style="color: #149599" id="lblAdminFee">@Model.AdminFee</label></p>
+                                    <p>Monthly fee: <label style="color: #149599" id="lblMonthlyFee">@Model.MonthlyFee</label></p>
+                                    <label id="lblBenefitId" style="visibility:hidden">@{ foreach (var item in Model.Benefits)
+                                        {
+                                            @(item.BenefitID + ", ");
+                                        }
+                                    }</label>
+                                    <label id="lblPolicyId" style="visibility:hidden">@Model.PolicyID</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <button type="button" class="btn btn-info" onclick="UpdateMemberPolicyClick(this, event, lblPolicyHolder.value)"><span class="glyphicon glyphicon-saved"></span> Update Policy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        LoadPoliciesList();
+        @foreach (var item in Model.Benefits)
+        {
+            @: cost += @item.BenefitCost;
+        }
+    })
+</script>
+<script>
+    var cost = +0;
+    var fees = +0;
+    function GenerateMonthlyFee() {
+        fees = $("#adminFee").val();
+        $("#lblAdminFee").text(fees);
+        $("#lblMonthlyFee").text(+fees + +cost);
+    }
+    function btnAddBenefitsClick() {
+        var benfee = +0;
+        $("#lblBenefits").empty();
+        $("#lblBenefitId").empty();
+        var i = 0;
+        $('input[name="benefits"]:checked').each(function () {
+            if(i == 0){
+                $("#lblBenefits").append(this.value);
+            }
+            else{
+                $("#lblBenefits").append(", " + this.value);
+            }
+            i++;
+            $("#lblBenefitId").append(this.id + ", ");
+            benfee += +(this.alt);
+        });
+        cost = benfee;
+        fees = $("#lblAdminFee").text();
+        $("#lblMonthlyFee").empty();
+        $("#lblMonthlyFee").text(+benfee + +fees);
+
+        //un-check boxes
+        $('input[name="benefits"]:checked').each(function () {
+            $('input[name="benefits"]').prop('checked', false);
+        });
+    }
+</script>
+<script type="text/javascript">
+    function LoadPoliciesList() {
+        $.ajax({
+            cache: false,
+            type: "GET",
+            url: '@Url.Action("GetPolicies", "MemberPolicy")',
+            success: function (data) {
+                var $placeholder = $("#dvPoliciesList");
+                $placeholder.empty();
+                $placeholder.html(data);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status);
+            }
+        });
+    }
+    $(document).ready(function () {
+        $(function () {
+            $("#MembershipNumber").change(function () {
+                var memNo = $(this).val();
+                if (memNo == "") { //clear labels
+                    $("#lblNameTitle").empty(); $("#lblPolicyHolder").empty(); $("#lblMembershipNo").empty(); $("#lblBeneficiaries").empty();
+                    $('#lblMaxBeneficiaries').empty(); $('#lblPolicyName').empty(); $('#lblPolicyDesc').empty(); $('#lblWaitingPeriod').empty();
+                    $('#lblBenefitId').empty(); $('#lblMonthlyFee').empty(); $('#lblAdminFee').empty(); 
+                    $('#lblPolicyId').empty(); $('#lblBenefits').empty(); $('#adminFee').val("");
+                }
+            else{
+            $.getJSON("@Url.Action("GetMemberDetails", "MemberPolicy")", { membershipNo: memNo, Type: 2 },
+                    function (data) {
+                        $("#lblNameTitle").empty();
+                        $("#lblNameTitle").append(data.FirstName + " " + data.LastName);
+                        $("#lblPolicyHolder").empty();
+                        $("#lblPolicyHolder").append(data.FirstName + " " + data.LastName);
+                        $("#lblMembershipNo").empty();
+                        $("#lblMembershipNo").append(data.MembershipNumber);
+                        $("#lblBeneficiaries").empty();
+                        $("#lblBeneficiaries").append(data.NoOfBeneficiaries + " member(s)");
+                        $("#lblMaxBeneficiaries").empty();
+                        $("#lblMaxBeneficiaries").append(data.MaximumBeneficiaries + " members");
+                        $("#lblPolicyName").empty();
+                        $("#lblPolicyName").append(data.PolicyName);
+                        $("#lblPolicyDesc").empty();
+                        $("#lblPolicyDesc").append(data.PolicyDescription);
+                        $("#lblWaitingPeriod").empty();
+                        $("#lblWaitingPeriod").append(data.WaitingPeriod + " month(s)");
+                        $("#lblMonthlyFee").empty();
+                        $("#lblMonthlyFee").append(data.MonthlyFee);
+                        $("#lblAdminFee").empty();
+                        $("#lblAdminFee").append(data.AdminFee);
+                        $("#lblPolicyId").empty();
+                        $("#lblPolicyId").append(data.PolicyID);
+                        $('#adminFee').val(data.AdminFee);
+                        if (data.Benefits != "") {
+                            $("#lblBenefits").empty();
+                            $("#lblBenefitId").empty();
+                            var i = 0;
+                            $.each(data.Benefits, function (index, item) {
+                                if(i == 0){
+                                    $("#lblBenefits").append(item.BenefitName);
+                                }
+                                else{
+                                    $("#lblBenefits").append(", " + item.BenefitName);
+                                }
+                                i++;
+                                $("#lblBenefitId").append(item.BenefitID + ", ");
+                                cost += +item.BenefitCost;
+                            });
+                        }
+                        else {
+                            $("#lblBenefits").empty();
+                            $("#lblBenefitId").empty();
+                        }
+                    });
+        }
+
+            });
+        });
+    });
+</script>
+
+<script>
+    function UpdateMemberPolicyClick(sender, e) {
+       var pHolder = $('#lblPolicyHolder').text(), memNo = $('#lblMembershipNo').text(), benefic = $('#lblBeneficiaries').text(),
+       maxBenefic = $('#lblMaxBeneficiaries').text(), pName = $('#lblPolicyName').text(), pDesc = $('#lblPolicyDesc').text(),
+       waitngP = $('#lblWaitingPeriod').text(), benefits = $('#lblBenefitId').text(), monthlyFee = $('#lblMonthlyFee').text(),
+       adminFees = $('#lblAdminFee').text(), polId = $('#lblPolicyId').text();
+       //alert(pHolder + " " + memNo + " " + benefic + " " + maxBenefic + " " + pName + " " + pDesc + " " + waitngP + " " + benefits + " " + monthlyFee + " " + adminFees + " " + polId);
+       $(window).scrollTop(0);
+       $("#btnSpinner").show();
+       if (pHolder != "" && memNo != "" && benefic != "" && maxBenefic != "" && pName != "" && pDesc != "" && waitngP != "" && benefits != "" && monthlyFee != "" && adminFees != "" && polId != "" ) {
+            $.ajax({
+                cache: false,
+                type: "GET",
+                data: { MemNumber: memNo, PolID: polId, NoOfBenefic: benefic, AdminFee: adminFees, MonthlyFee: monthlyFee, WaitingPeriod: waitngP, Benefits: benefits },
+                url: '@Url.Action("EditPolicyMember", "MemberPolicy")',
+                success: function (data) {
+                    SuccessAlert(data);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                }
+            });
+       }
+       else {
+           $('#btnSpinner').hide();
+           $.notify({
+               title: '<strong>Error!</strong>',
+               message: 'Please select all options required to UPDATE a policy.'
+           }, {
+               type: 'danger'
+           });
+       }
+        function SuccessAlert(data) {
+            if (data == 1) {
+                $("#MembershipNumber").val(""); $('#lblNameTitle').text("");
+                $('#lblPolicyHolder').text(""); $('#lblMembershipNo').text(""); $('#lblBeneficiaries').text(""); $('#lblMaxBeneficiaries').text("");
+                $('#lblPolicyName').text(""); $('#lblPolicyDesc').text(""); $('#lblWaitingPeriod').text(""); $('#lblBenefitId').text("");
+                $('#lblMonthlyFee').text(""); $('#lblAdminFee').text(""); $('#adminFee').val(""); $('#lblPolicyId').text("");
+                $('#lblBenefits').text("");
+                $('#btnSpinner').hide();
+                $.notify({
+                    title: '<strong>Success!</strong>',
+                    message: 'Member policy has been UPDATED successfully.'
+                }, {
+                    type: 'success'
+                });
+                //reload page
+            }
+            else {
+                $('#btnSpinner').hide();
+                $.notify({
+                    title: '<strong>Error!</strong>',
+                    message: 'Something went wrong please try again.'
+                }, {
+                    type: 'danger'
+                });
+            }
+        }
+    }
+</script>

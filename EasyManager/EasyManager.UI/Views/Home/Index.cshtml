@@ -1,0 +1,68 @@
+﻿@using EasyManager.UI.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+@Scripts.Render("~/bundles/highcharts")
+<!-- OVERVIEW -->
+<div class="panel panel-headline">
+    <div class="panel-heading">
+        <h3 class="panel-title">Statistical Overview</h3>
+        <p class="panel-subtitle">Easy Manager simple summary since year 2008</p>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="fa fa-users"></i></span>
+                    <p>
+                        <span class="number">@Model.StatsList[0].stat_count</span>
+                        <span class="title">Total Members</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="fa fa-briefcase"></i></span>
+                    <p>
+                        <span class="number">@Model.StatsList[1].stat_count</span>
+                        <span class="title">Policies</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="fa fa-institution"></i></span>
+                    <p>
+                        <span class="number">@Model.StatsList[2].stat_count</span>
+                        <span class="title">Branches</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric">
+                    <span class="icon"><i class="fa fa-map-marker"></i></span>
+                    <p>
+                        <span class="number">@Model.StatsList[3].stat_count</span>
+                        <span class="title">Provinces</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-9">
+                <div id="container-line" style="width:100%; height:100px;"></div>
+            </div>
+            <div class="col-md-3">
+                <div id="container-pie" style="width:100%; height:100px;"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="container-bar" style="width:100%; height:100px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

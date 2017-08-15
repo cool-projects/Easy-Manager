@@ -1,0 +1,182 @@
+﻿
+@{
+    ViewBag.Title = "Members";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<EasyManagerClasses.PolicyMember>
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+    });
+</script>
+
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <div id="searchMembers">
+                <b style="margin-left:230px;">Search Member:</b>&nbsp;<input type="text" class="text-box single-line" width="200"/>&nbsp;<input type="button" value="Search" id="btnSearch" />
+            </div>
+        </div>
+    </section>
+}
+<div class="container">
+    
+    
+    
+
+      
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
+              
+
+                        <!-- menu -->
+                        <div id="MainMenu">
+                            <div class="list-group panel">
+                                <a href="#" class="list-group-item list-group-item-success" data-parent="#MainMenu">Item 1</a>
+                                <a href="#" class="list-group-item list-group-item-success" data-parent="#MainMenu">Item 2</a>
+                                <a href="#demo3" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Item 3 <i class="fa fa-caret-down"></i></a>
+                                <div class="collapse" id="demo3">
+                                    <a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">Subitem 1 <i class="fa fa-caret-down"></i></a>
+                                    <div class="collapse list-group-submenu" id="SubMenu1">
+                                        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 1 a</a>
+                                        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 2 b</a>
+                                        <a href="#SubSubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubSubMenu1">Subitem 3 c <i class="fa fa-caret-down"></i></a>
+                                        <div class="collapse list-group-submenu list-group-submenu-1" id="SubSubMenu1">
+                                            <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 1</a>
+                                            <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 2</a>
+                                        </div>
+                                        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 4 d</a>
+                                    </div>
+                                    <a href="javascript:;" class="list-group-item">Subitem 2</a>
+                                    <a href="javascript:;" class="list-group-item">Subitem 3</a>
+                                </div>
+                                <a href="#demo4" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Item 4  <i class="fa fa-caret-down"></i></a>
+                                <div class="collapse" id="demo4">
+                                    <a href="" class="list-group-item">Subitem 1</a>
+                                    <a href="" class="list-group-item">Subitem 2</a>
+                                    <a href="" class="list-group-item">Subitem 3</a>
+                                </div>
+                            </div>
+                        </div>
+            </nav>
+
+            <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+                    <section class="row text-center placeholders">
+                            <div class="col-xs-offset-0" style="background-color:green;">
+                               
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Sheena Shrestha</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> </div>
+
+                                            <div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  <dl>
+                    <dt>DEPARTMENT:</dt>
+                    <dd>Administrator</dd>
+                    <dt>HIRE DATE</dt>
+                    <dd>11/12/2013</dd>
+                    <dt>DATE OF BIRTH</dt>
+                       <dd>11/12/2013</dd>
+                    <dt>GENDER</dt>
+                    <dd>Male</dd>
+                  </dl>
+                </div>
+                                            <div class=" col-md-9 col-lg-9 ">
+                                                <table class="table table-user-information">
+                                                    <tbody>
+                                                        @foreach (EasyManagerClasses.PolicyMember member in Model)
+                                                        {                                                           
+                                                            <tr>
+                                                            <td>Policy:</td>
+                                                            <td>@member.FirstName</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Join Date:</td>
+                                                            <td>@member.EntryDate</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Contact Number:</td>
+                                                            <td>@member.Cover</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Home Address</td>
+                                                            <td>@member.LastName</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Email</td>
+                                                            <td><a href="mailto:info@support.com">@member.IdentityNumber</a></td>
+                                                        </tr>
+                                                        }                                                       
+                                                    </tbody>
+                                                </table>
+
+                                                <a href="#" class="btn btn-primary">My Sales Performance</a>
+                                                <a href="#" class="btn btn-primary">Team Sales Performance</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                                        <span class="pull-right">
+                                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                        
+                            </div>
+</section>
+                   
+                    <h2>Section title</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Header</th>
+                                    <th>Header</th>
+                                    <th>Header</th>
+                                    <th>Header</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1,001</td>
+                                    <td>Lorem</td>
+                                    <td>ipsum</td>
+                                    <td>dolor</td>
+                                    <td>sit</td>
+                                </tr>
+                                <tr>
+                                    <td>1,001</td>
+                                    <td>Lorem</td>
+                                    <td>ipsum</td>
+                                    <td>dolor</td>
+                                    <td>sit</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+</main>
+        </div>
+    </div>
+
+</div>

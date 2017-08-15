@@ -1,0 +1,59 @@
+﻿@using EasyManager.UI.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+<script>
+  function preventBack(){window.history.forward();}
+  setTimeout("preventBack()", 0);
+  window.onunload=function(){null};
+</script>
+
+    <div class="vertical-align-wrap">
+        <div class="vertical-align-middle">
+            <div class="auth-box ">
+                <div class="left">
+                    <div class="content">
+                        <div class="logo text-center"><img src="~/Images/em-logo.PNG" class="img-responsive" alt="Klorofil Logo"></div>
+                           @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-auth-small" }))
+                           {
+                            @Html.AntiForgeryToken()
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                                <label for="signup-email" class="control-label sr-only">Email</label>
+                                @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label for="signup-password" class="control-label sr-only">Password</label>
+                                @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                        <div class="form-group clearfix">
+                            <label class="fancy-checkbox element-left">
+                                <input type="checkbox">
+                                <span>Remember me</span>
+                            </label>
+                        </div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
+                            <div class="bottom">
+                                <span><i class="fa fa-lock"></i> <a href="#">Forgot password?</a></span>
+                            </div>
+                            <hr />
+                           }
+                    </div>
+                </div>
+                <div class="right" style="background-color: #13919F">
+                    @*<div class="overlay"></div>*@
+                    <div class="content text">
+                        <h1 class="heading">Your Funeral Policies Management Solution</h1>
+                        @*<p>by JVM Solutions Engineering</p>*@
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+

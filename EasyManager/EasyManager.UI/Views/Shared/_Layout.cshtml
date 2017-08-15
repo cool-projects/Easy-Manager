@@ -1,0 +1,88 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title | Easy Manager</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- CSS -->
+    @Styles.Render("~/Content/css")
+    <!-- JAVASCRIPT -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/klorofil")
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Images/apple-icon.png">
+    @*<link rel="icon" type="image/png" sizes="96x96" href="~/Images/favicon.png">*@
+</head>
+<body>
+    <!-- WRAPPER -->
+    <div id="wrapper">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="brand">
+                <img src="~/Images/em-logo.png" class="img-responsive" alt="Avatar">
+                @*<h4 style="color:white">Funeral Policies Management System</h4>*@
+            </div>
+            <div class="sidebar-scroll">
+                <nav>
+                    @Html.Partial("_LayoutMenuPartial")
+                </nav>
+            </div>
+        </div>
+        <!-- END SIDEBAR -->
+        <!-- MAIN -->
+        <div class="main">
+            <!-- NAVBAR -->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid" style="background-color:#149599">
+                    <div class="navbar-btn" style="color:#F1C40F">
+                        <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+                    </div>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu">
+                            <span class="sr-only">Toggle Navigation</span>
+                            <i class="fa fa-bars icon-nav"></i>
+                        </button>
+                    </div>
+                    <div id="navbar-menu" class="navbar-collapse collapse">
+                        <form class="navbar-form navbar-left hidden-xs">
+                            <div class="input-group">
+                                <input type="text" value="" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn"><button type="button" class="btn btn-warning">Go</button></span>
+                            </div>
+                        </form>
+                        
+                        @Html.Partial("_LoginDetails")
+                    </div>
+                </div>
+            </nav>
+            <!-- END NAVBAR -->
+
+            @Html.Partial("_CompanyDetails")
+            <!-- MAIN CONTENT -->
+            <div class="main-content" style="background-color: #e7f4f5">
+                
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- END MAIN CONTENT -->
+            <div class="container-fluid">
+                <p class="copyright">&copy; @DateTime.Now.Year. Designed &amp; Crafted by <a href="http://www.eazymanager.co.za">Easy Manager Technology Solutions</a></p>
+                <br />
+            </div>
+        </div>
+        <!-- END MAIN -->
+    </div>
+    <!-- END WRAPPER -->
+    <!-- Javascript -->
+    
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+

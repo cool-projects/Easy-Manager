@@ -1,0 +1,32 @@
+﻿@if (ViewBag.IsSaved == "update")
+{
+    <div class="alert alert-success" id="success-alert">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>Success! </strong>
+        Member details updated successfully.
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#success-alert").alert();
+            $("#success-alert").fadeTo(3000, 500).slideUp(500, function () {
+                $("#success-alert").slideUp(500);
+            });
+        });
+    </script>
+}
+@if (ViewBag.IsSaved == "create")
+{
+    <div class="alert alert-success" id="success-alert1">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>Success! </strong>
+        Member added to database successfully.
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#success-alert1").alert();
+            $("#success-alert1").fadeTo(3000, 500).slideUp(500, function () {
+                $("#success-alert1").slideUp(500);
+            });
+        });
+    </script>
+}

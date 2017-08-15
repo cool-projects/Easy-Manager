@@ -1,0 +1,109 @@
+﻿@using EasyManagerClasses
+@model List<MemberPolicy>
+@{
+    ViewBag.Title = "Member Policy";
+}
+<style>
+    #tblMembers tbody tr:hover {
+        background-color: #d0e9ea;
+    }
+</style>
+<!-- OVERVIEW -->
+<form class="form-horizontal">
+    <div class="panel panel-headline">
+        <div class="panel-heading">
+
+            <div class="col-md-6">
+                <h3 class="panel-title">Members & Allocated Policies</h3>
+            </div>
+            <div class="col-md-6">
+                <div class="text-right"><a href="@Url.Action("MemberPolicyCreate", "MemberPolicy")" class="btn btn-primary">Allocate Policies</a><br /></div>
+            </div>
+            <br />
+        </div>
+        <div class="panel-body">
+            <div class="panel-body">
+                <div id="divPolicyMemberListInfo"></div>
+                <br />
+            </div>
+            <div class="row">
+                <table id="tblPolicyMembers" class="table">
+                    <thead>
+                        <tr>
+                            <th>Policy Number</th>
+                            <th>Membership No.</th>
+                            <th>Member Name</th>
+                            <th>Policy Name</th>
+                            <th>Membership Status</th>
+                            <th>Joining Date</th>
+                            <th>Activation Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            var color = string.Empty;
+                            if (item.MembershipStatus == "Active")
+                            {
+                                color = "LightCyan";
+                            }
+                            else if (item.MembershipStatus == "Suspended")
+                            {
+                                color = "LightPink";
+                            }
+                            else
+                            {
+                                color = "OldLace";
+                            }
+                            <tr style="background-color:@color">
+                                <td>@item.PolicyNumber</td>
+                                <td>@item.MainMemberID<a href="@item.MainMemberID"></a></td>
+                                <td>@item.MainMemberFullName</td>
+                                <td>@item.PolicyName</td>
+                                <td>@item.MembershipStatus</td>
+                                <td>@item.DateJoined.ToString("dd-MM-yyyy")</td>
+                                <td>@item.DateActivated.ToString("dd-MM-yyyy")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+    
+
+    <script>
+        $(document).ready(function () {
+            var test = '@Model.Select(x=>x.FirstName).First()';
+            var membershipNo = '@Model.Where(x => x.MembershipStatus == "Active").Select(x => x.MainMemberID).First()';
+            GetPolicyMemberInfoRowClick(membershipNo);
+            $('#tblPolicyMembers').DataTable();
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $('#tblPolicyMembers tr').click(function () {
+            var memNo = $(this).find("a").attr("href");
+            if (memNo) {
+                GetPolicyMemberInfoRowClick(memNo);
+            }
+        });
+        function GetPolicyMemberInfoRowClick(memNo) {
+            $.ajax({
+                cache: false,
+                type: "GET",
+                data: { membershipNo: memNo },
+                url: '@Url.Action("MemberPolicyInfo", "MemberPolicy")',
+                success: function (data) {
+                    var $placeholder = $("#divPolicyMemberListInfo");
+                    $placeholder.empty();
+                    $placeholder.html(data);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                }
+            });
+        }
+    </script>

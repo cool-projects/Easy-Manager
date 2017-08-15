@@ -1,0 +1,31 @@
+﻿@using EasyManagerClasses
+@model Members
+@{
+    var base64 = Convert.ToBase64String(Model.ImageFile);
+    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+}
+
+<div class="profile-header">
+    <div class="overlay"></div>
+    <div class="profile-main">
+        <img src="@imgSrc" class="img-circle" alt="Avatar">
+        <h3 class="name">@Model.FirstName @Model.LastName</h3>
+    </div>
+    <div class="profile-stat">
+        <div class="row">
+            <div class="col-md-3 stat-item">
+                @Model.MembershipNumber <span>Membership No.</span>
+            </div>
+            <div class="col-md-3 stat-item">
+                @Model.MembershipType <span>Membership Type</span>
+            </div>
+            <div class="col-md-3 stat-item">
+                @Model.MembershipStatus <span>Membership Status</span>
+            </div>
+            <div class="col-md-3 stat-item">
+                <div class="text-center"><a href="@Url.Action("MemberDetails", "Member", new { ID = Model.MemberId, MainM_ID = Model.MainMemberID})" class="btn btn-warning">Member Full Profile</a></div>
+            </div>
+
+        </div>
+    </div>
+</div>
